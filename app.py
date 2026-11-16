@@ -44,25 +44,25 @@ from catboost import CatBoostRegressor
 
 st.set_page_config(
 
-    page_title="AutoPrice AI",
+    page_title="Antonio Lobato Garage",
 
-    page_icon="🚗",
+    page_icon="🏎️",
 
     layout="wide"
 
 )
 
 
-st.title("🚗 AutoPrice AI")
+st.title("🏎️ Antonio Lobato Garage")
 
-st.caption("Exploración de datos y predicción del precio de vehículos")
+st.caption("Exploración de datos y predicción del precio de vehículos de segunda mano")
 
 
 # ---------------------------------------------------------
 
 # CARGA Y PREPARACIÓN DE DATOS
 
-# ---------------------------------------------------------
+# ------------------------------------------------
 
 
 def extraer_potencia(texto):
@@ -1383,4 +1383,4 @@ elif seccion == "Predecir precio":
 
 st.sidebar.divider()
 
-st.sidebar.caption("AutoPrice AI · Proyecto de Machine Learning")
+st.sidebar.caption("Antonio Lobato Garage · Proyecto de Machine Learning")
