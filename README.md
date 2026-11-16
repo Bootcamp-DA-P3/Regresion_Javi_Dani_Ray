@@ -19,13 +19,23 @@ La consigna de entrega pide un repositorio con el **notebook** y una **demo en S
 
 ## 2. Datos y preparación
 
+### Selección y filtrado de datos
+
+El conjunto de datos original contenía **4.006 registros**. Tras analizar la distribución de precios, se identificaron **231 vehículos con un precio superior a 100.000 $ (5,77 % del total)**.
+
+Se decidió excluir estos registros y trabajar con los **3.775 vehículos restantes**, cuyo precio no supera los 100.000 $.
+
+Esta decisión responde a la presencia de valores extremos que ampliaban considerablemente el rango de precios y dificultaban el entrenamiento y la capacidad predictiva de los modelos de Machine Learning. De este modo, se delimitó el ámbito de estudio para mejorar la estabilidad del entrenamiento y reducir la influencia de observaciones excepcionalmente elevadas.
+
 | Columna | Uso en la aplicación |
 | --- | --- |
 | `price` | Variable objetivo obligatoria. La interfaz muestra los precios con el símbolo `$`. |
+| `price_tipo` | Variable objetivo obligatoria limpia. 
 | `brand`, `model` | Necesarias para seleccionar el vehículo en el formulario de predicción. |
 | `milage` | Kilometraje en millas. El CSV debe conservar la grafía `milage` para que la aplicación reconozca este campo. |
 | `model_year` | Año del modelo. Se usa también para calcular la antigüedad. |
 | `engine` | Descripción del motor. Si está disponible, se extraen potencia en HP, cilindrada en litros, número de cilindros y arquitectura. |
+
 
 El siguiente fragmento muestra cómo se convierte `price` a número y se descartan los registros que no sirven como ejemplos de entrenamiento:
 
@@ -41,7 +51,7 @@ df = df[df["price"] > 0].copy()
 
 `errors="coerce"` convierte en valores ausentes los precios que no se pueden interpretar. Después se eliminan esos registros, los duplicados y los precios no positivos. Si existe `model_year`, se calcula `vehicle_age = 2026 - model_year`: **2026 es una referencia fija en el código**. Todas las columnas resultantes salvo `price` se usan como entradas de los modelos.
 
-La competición [Regression of Used Car Prices](https://www.kaggle.com/competitions/playground-series-s4e9) es un recurso sugerido en el enunciado. `app.py` lee un CSV local o subido por el usuario; no acredita por sí solo que ese CSV proceda de la competición.
+La fuente de los datos ha sido [Regression of Used Car Prices](https://www.kaggle.com/competitions/playground-series-s4e9). `app.py` lee un CSV local o subido por el usuario.
 
 ## 3. Análisis exploratorio: distribución y dispersión
 
